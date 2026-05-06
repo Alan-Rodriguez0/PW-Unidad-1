@@ -1,0 +1,62 @@
+<section class="catalogo-page">
+  <header class="topbar">
+    <div class="logo">
+      🛍️ <span>Local Market</span>
+    </div>
+
+    <input
+      type="text"
+      placeholder="Buscar productos..."
+      [(ngModel)]="busqueda"
+    />
+
+    <div class="acciones">
+      <button>Categorías</button>
+      <button>Favoritos</button>
+      <button routerLink="/carrito">Carrito</button>
+    </div>
+  </header>
+
+  <section class="banner">
+    <div>
+      <span>CATÁLOGO LOCAL</span>
+      <h1>Descubre productos increíbles</h1>
+      <p>Compra productos de vendedores de tu comunidad.</p>
+    </div>
+  </section>
+
+  <section class="filtros">
+    <button (click)="filtrarCategoria('Todos')">Todos</button>
+    <button (click)="filtrarCategoria('Alimentos')">Alimentos</button>
+    <button (click)="filtrarCategoria('Tecnología')">Tecnología</button>
+    <button (click)="filtrarCategoria('Ropa')">Ropa</button>
+    <button (click)="filtrarCategoria('Hogar')">Hogar</button>
+    <button (click)="filtrarCategoria('Deportes')">Deportes</button>
+  </section>
+
+  <section class="productos-grid">
+    <div class="producto-card" *ngFor="let producto of productosFiltrados">
+      <img [src]="producto.imagen" />
+
+      <div class="producto-info">
+        <span>{{ producto.categoria }}</span>
+
+        <h3>{{ producto.nombre }}</h3>
+
+        <p>{{ producto.vendedor }}</p>
+
+        <strong>${{ producto.precio }}</strong>
+
+        <div class="botones">
+          <button class="ver" routerLink="/producto">
+            Ver producto
+          </button>
+
+          <button class="carrito" routerLink="/carrito">
+            Agregar al carrito
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>

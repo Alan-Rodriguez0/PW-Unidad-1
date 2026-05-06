@@ -1,0 +1,63 @@
+<section class="panel-page">
+  <aside class="sidebar">
+    <h2>🛍️ Local Market</h2>
+    <a>Dashboard</a>
+    <a>Mis productos</a>
+    <a>Pedidos</a>
+    <a>Ventas</a>
+    <a routerLink="/">Salir</a>
+  </aside>
+
+  <main class="contenido">
+    <h1>Panel del vendedor</h1>
+    <p>Administra tus productos, ventas y pedidos.</p>
+
+    <div class="cards">
+      <div><h3>Productos</h3><strong>12</strong></div>
+      <div><h3>Pedidos</h3><strong>8</strong></div>
+      <div><h3>Ventas</h3><strong>$2,450</strong></div>
+    </div>
+
+    <section class="form-producto">
+      <h2>Agregar producto</h2>
+
+      <input type="text" placeholder="Nombre del producto" />
+      <input type="number" placeholder="Precio" />
+      <select>
+        <option>Alimentos</option>
+        <option>Ropa</option>
+        <option>Tecnología</option>
+        <option>Hogar</option>
+      </select>
+      <textarea placeholder="Descripción del producto"></textarea>
+      <input type="file" />
+
+      <button>Publicar producto</button>
+    </section>
+
+    <section class="tabla">
+      <h2>Mis productos</h2>
+
+      <table>
+        <tr>
+          <th>Producto</th>
+          <th>Precio</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+        <tr>
+          <td>Canasta de frutas</td>
+          <td>$120</td>
+          <td>Activo</td>
+          <td>Editar | Eliminar</td>
+        </tr>
+        <tr>
+          <td>Maceta artesanal</td>
+          <td>$150</td>
+          <td>Pendiente</td>
+          <td>Editar | Eliminar</td>
+        </tr>
+      </table>
+    </section>
+  </main>
+</section>

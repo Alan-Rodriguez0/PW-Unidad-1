@@ -1,0 +1,102 @@
+.panel-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  background: #fff8e1;
+  font-family: Arial, sans-serif;
+}
+
+.sidebar {
+  background: #14532d;
+  color: white;
+  padding: 30px;
+}
+
+.sidebar h2 {
+  margin-bottom: 35px;
+}
+
+.sidebar a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  margin: 18px 0;
+  cursor: pointer;
+}
+
+.contenido {
+  padding: 35px;
+}
+
+.contenido h1 {
+  color: #14532d;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin: 25px 0;
+}
+
+.cards div,
+.form-producto,
+.tabla {
+  background: white;
+  border-radius: 22px;
+  padding: 25px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.cards strong {
+  color: #166534;
+  font-size: 30px;
+}
+
+.form-producto {
+  display: grid;
+  gap: 14px;
+}
+
+.form-producto input,
+.form-producto select,
+.form-producto textarea {
+  padding: 13px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.form-producto textarea {
+  height: 90px;
+}
+
+.form-producto button {
+  background: #166534;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.tabla {
+  margin-top: 25px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background: #eef7e9;
+  color: #14532d;
+}
+
+th,
+td {
+  padding: 14px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
