@@ -1,3 +1,8 @@
+<app-toast
+  [mensaje]="mensajeToast"
+  [visible]="mostrarToast">
+</app-toast>
+
 <section class="catalogo-page">
   <header class="topbar">
     <div class="logo">
@@ -11,10 +16,52 @@
     />
 
     <div class="acciones">
-      <button>Categorías</button>
-      <button>Favoritos</button>
-      <button routerLink="/carrito">Carrito</button>
+  <button>Categorías</button>
+  <div
+  class="favorite-icon"
+  routerLink="/favoritos">
+
+  <svg lucideHeart size="22"></svg>
+
+</div>
+  <div
+  class="cart-icon"
+  routerLink="/carrito">
+
+  <svg lucideShoppingCart size="22"></svg>
+
+  <span class="cart-badge">
+    {{ cantidadCarrito }}
+  </span>
+
+</div>
+
+  <div class="user-menu">
+    <button class="user-icon">
+  <svg lucideUser size="20"></svg>
+</button>
+
+    <div class="dropdown-profile">
+      <div class="profile-top">
+        <div class="profile-avatar">👤</div>
+
+        <div>
+          <h4>Eduardo López</h4>
+          <p>usuario&#64;correo.com</p>
+        </div>
+      </div>
+
+      <span class="rol">Cliente</span>
+
+      <div class="profile-links">
+        <a routerLink="/perfil">Editar perfil</a>
+        <a routerLink="/mis-pedidos">Mis pedidos</a>
+        <a routerLink="/favoritos">Favoritos</a>
+        <a routerLink="/">Cerrar sesión</a>
+      </div>
     </div>
+  </div>
+</div>
   </header>
 
   <section class="banner">
@@ -35,28 +82,10 @@
   </section>
 
   <section class="productos-grid">
-    <div class="producto-card" *ngFor="let producto of productosFiltrados">
-      <img [src]="producto.imagen" />
-
-      <div class="producto-info">
-        <span>{{ producto.categoria }}</span>
-
-        <h3>{{ producto.nombre }}</h3>
-
-        <p>{{ producto.vendedor }}</p>
-
-        <strong>${{ producto.precio }}</strong>
-
-        <div class="botones">
-          <button class="ver" routerLink="/producto">
-            Ver producto
-          </button>
-
-          <button class="carrito" routerLink="/carrito">
-            Agregar al carrito
-          </button>
-        </div>
-      </div>
-    </div>
+    <app-product-card
+  *ngFor="let producto of productosFiltrados"
+  [producto]="producto"
+  (agregar)="agregarCarrito()">
+</app-product-card>
   </section>
 </section>

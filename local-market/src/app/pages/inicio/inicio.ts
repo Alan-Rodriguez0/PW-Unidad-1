@@ -1,15 +1,64 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { Navbar } from '../../components/navbar/navbar';
+import { Footer } from '../../components/footer/footer';
+import { ProductCard } from '../../components/product-card/product-card';
+import { Toast } from '../../components/toast/toast';
 
 @Component({
   selector: 'app-inicio',
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, Navbar, Footer, ProductCard, Toast],
   templateUrl: './inicio.html',
   styleUrl: './inicio.css',
 })
 export class Inicio {
   slideActual = 0;
+  cantidadCarrito = 0;
+mostrarToast = false;
+mensajeToast = '';
+
+productosDestacados = [
+  {
+    nombre: 'Canasta de frutas',
+    vendedor: 'Frutería López',
+    precio: 120,
+    categoria: 'Alimentos',
+    imagen: 'https://images.unsplash.com/photo-1610348725531-843dff563e2c?w=500',
+  },
+  {
+    nombre: 'Camisa de lino',
+    vendedor: 'Moda Local',
+    precio: 280,
+    categoria: 'Ropa',
+    imagen: 'https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=500',
+  },
+  {
+    nombre: 'Audífonos Bluetooth',
+    vendedor: 'TecnoShop',
+    precio: 450,
+    categoria: 'Tecnología',
+    imagen: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500',
+  },
+  {
+    nombre: 'Maceta artesanal',
+    vendedor: 'Artesanías del Pueblo',
+    precio: 150,
+    categoria: 'Hogar',
+    imagen: 'https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=500',
+  },
+];
+
+agregarCarrito() {
+  this.cantidadCarrito++;
+
+  this.mensajeToast = 'Producto agregado al carrito';
+  this.mostrarToast = true;
+
+  setTimeout(() => {
+    this.mostrarToast = false;
+  }, 2500);
+}
 
   slides = [
     {

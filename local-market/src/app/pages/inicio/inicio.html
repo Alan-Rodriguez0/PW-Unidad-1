@@ -1,25 +1,9 @@
+<app-toast
+  [mensaje]="mensajeToast"
+  [visible]="mostrarToast">
+</app-toast>
 <section class="inicio-page">
-  <header class="navbar">
-    <div class="logo">
-      <div class="logo-icon">🛍️</div>
-      <h2>Local Market</h2>
-    </div>
-
-    <nav>
-  <a routerLink="/">Inicio</a>
-  <a routerLink="/catalogo">Productos</a>
-  <a routerLink="/registro-vendedor">Vender</a>
-  <a routerLink="/carrito">Carrito</a>
-  <a routerLink="/panel-vendedor">Panel vendedor</a>
-  <a routerLink="/panel-admin">Admin</a>
-</nav>
-
-    <div class="nav-buttons">
-      <button routerLink="/login" class="btn-outline">Iniciar sesión</button>
-      <button routerLink="/registro" class="btn-green">Registrarse</button>
-    </div>
-  </header>
-
+  <app-navbar [cantidadCarrito]="cantidadCarrito"></app-navbar>
   <main class="hero-carousel">
     <button class="arrow left" (click)="anteriorSlide()">‹</button>
 
@@ -69,36 +53,15 @@
   </section>
 
   <section class="productos">
-    <h2>Productos destacados</h2>
+  <h2>Productos destacados</h2>
 
-    <div class="productos-grid">
-      <div class="producto-card">
-        <img src="https://images.unsplash.com/photo-1610348725531-843dff563e2c?w=500" />
-        <h3>Canasta de frutas</h3>
-        <p>Frutería Local</p>
-        <strong>$120.00</strong>
-      </div>
-
-      <div class="producto-card">
-        <img src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=500" />
-        <h3>Camisa de lino</h3>
-        <p>Moda Local</p>
-        <strong>$280.00</strong>
-      </div>
-
-      <div class="producto-card">
-        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500" />
-        <h3>Audífonos Bluetooth</h3>
-        <p>TecnoShop</p>
-        <strong>$450.00</strong>
-      </div>
-
-      <div class="producto-card">
-        <img src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=500" />
-        <h3>Maceta artesanal</h3>
-        <p>Artesanías del pueblo</p>
-        <strong>$150.00</strong>
-      </div>
-    </div>
-  </section>
+  <div class="productos-grid">
+    <app-product-card
+      *ngFor="let producto of productosDestacados"
+      [producto]="producto"
+      (agregar)="agregarCarrito()">
+    </app-product-card>
+  </div>
+</section>
+  <app-footer></app-footer>
 </section>

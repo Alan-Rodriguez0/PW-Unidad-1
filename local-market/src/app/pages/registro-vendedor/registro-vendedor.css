@@ -52,3 +52,14 @@
   font-weight: bold;
   cursor: pointer;
 }
+
+@media (max-width: 600px) {
+  .vendedor-page {
+    padding: 18px;
+  }
+
+  .form-card {
+    width: 100%;
+    padding: 25px;
+  }
+}

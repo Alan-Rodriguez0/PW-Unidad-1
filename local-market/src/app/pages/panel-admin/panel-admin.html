@@ -36,40 +36,36 @@
     </div>
 
     <section class="solicitudes">
-      <h2>Solicitudes de vendedores</h2>
+  <h2>Solicitudes de vendedores</h2>
 
-      <table>
-        <tr>
-          <th>Negocio</th>
-          <th>Responsable</th>
-          <th>Ubicación</th>
-          <th>Estado</th>
-          <th>Acciones</th>
-        </tr>
+  <table>
+    <tr>
+      <th>Negocio</th>
+      <th>Responsable</th>
+      <th>Ubicación</th>
+      <th>Estado</th>
+      <th>Acciones</th>
+    </tr>
 
-        <tr>
-          <td>Abarrotes López</td>
-          <td>Juan López</td>
-          <td>Centro</td>
-          <td>Pendiente</td>
-          <td>
-            <button class="aprobar">Aprobar</button>
-            <button class="rechazar">Rechazar</button>
-          </td>
-        </tr>
-
-        <tr>
-          <td>Artesanías Mayra</td>
-          <td>Mayra Ruiz</td>
-          <td>Barrio Norte</td>
-          <td>Pendiente</td>
-          <td>
-            <button class="aprobar">Aprobar</button>
-            <button class="rechazar">Rechazar</button>
-          </td>
-        </tr>
-      </table>
-    </section>
+    <tr *ngFor="let solicitud of solicitudes">
+      <td>{{ solicitud.negocio }}</td>
+      <td>{{ solicitud.responsable }}</td>
+      <td>{{ solicitud.ubicacion }}</td>
+      <td>
+        <span
+          [class.estado-aprobado]="solicitud.estado === 'Aprobado'"
+          [class.estado-rechazado]="solicitud.estado === 'Rechazado'"
+        >
+          {{ solicitud.estado }}
+        </span>
+      </td>
+      <td>
+        <button class="aprobar" (click)="aprobar(solicitud)">Aprobar</button>
+        <button class="rechazar" (click)="rechazar(solicitud)">Rechazar</button>
+      </td>
+    </tr>
+  </table>
+</section>
 
     <section class="productos">
       <h2>Productos recientes</h2>

@@ -124,3 +124,39 @@ td {
   color: #666;
   padding-bottom: 15px;
 }
+
+.estado-aprobado {
+  color: #166534;
+  font-weight: bold;
+}
+
+.estado-rechazado {
+  color: #b91c1c;
+  font-weight: bold;
+}
+
+@media (max-width: 900px) {
+  .admin-page {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    text-align: center;
+  }
+
+  .contenido {
+    padding: 18px;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  .productos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  table {
+    font-size: 13px;
+  }
+}

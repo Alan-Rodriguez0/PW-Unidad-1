@@ -100,3 +100,39 @@ td {
   border-bottom: 1px solid #eee;
   text-align: left;
 }
+
+.btn-tabla {
+  background: #166534;
+  color: white;
+  border: none;
+  padding: 8px 11px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 6px;
+}
+
+.btn-tabla.eliminar {
+  background: #b91c1c;
+}
+
+@media (max-width: 900px) {
+  .panel-page {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    text-align: center;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .contenido {
+    padding: 18px;
+  }
+
+  table {
+    font-size: 13px;
+  }
+}

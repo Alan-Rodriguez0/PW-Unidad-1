@@ -2,16 +2,22 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { ProductCard } from '../../components/product-card/product-card';
+import { Toast } from '../../components/toast/toast';
+import { LucideUser, LucideShoppingCart, LucideHeart } from '@lucide/angular';
 
 @Component({
   selector: 'app-catalogo',
-  imports: [CommonModule, RouterLink, FormsModule],
+  imports: [CommonModule, RouterLink, FormsModule, ProductCard, Toast, LucideUser, LucideShoppingCart, LucideHeart],
   templateUrl: './catalogo.html',
   styleUrl: './catalogo.css',
 })
 export class Catalogo {
   busqueda = '';
   categoriaSeleccionada = 'Todos';
+  cantidadCarrito = 0;
+  mostrarToast = false;
+  mensajeToast = '';
 
   productos = [
     {
@@ -75,4 +81,15 @@ export class Catalogo {
   filtrarCategoria(categoria: string) {
     this.categoriaSeleccionada = categoria;
   }
+
+  agregarCarrito() {
+  this.cantidadCarrito++;
+
+  this.mensajeToast = 'Producto agregado al carrito';
+  this.mostrarToast = true;
+
+  setTimeout(() => {
+    this.mostrarToast = false;
+  }, 2500);
+}
 }

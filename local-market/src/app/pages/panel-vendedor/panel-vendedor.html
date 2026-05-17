@@ -21,43 +21,53 @@
     <section class="form-producto">
       <h2>Agregar producto</h2>
 
-      <input type="text" placeholder="Nombre del producto" />
-      <input type="number" placeholder="Precio" />
-      <select>
-        <option>Alimentos</option>
-        <option>Ropa</option>
-        <option>Tecnología</option>
-        <option>Hogar</option>
-      </select>
-      <textarea placeholder="Descripción del producto"></textarea>
-      <input type="file" />
+      <input type="text" placeholder="Nombre del producto" [(ngModel)]="nuevoProducto.nombre" />
+<input type="number" placeholder="Precio" [(ngModel)]="nuevoProducto.precio" />
 
-      <button>Publicar producto</button>
+<select [(ngModel)]="nuevoProducto.categoria">
+  <option>Alimentos</option>
+  <option>Ropa</option>
+  <option>Tecnología</option>
+  <option>Hogar</option>
+</select>
+
+<textarea placeholder="Descripción del producto" [(ngModel)]="nuevoProducto.descripcion"></textarea>
+
+<input type="file" />
+
+<button (click)="agregarProducto()">Publicar producto</button>
     </section>
 
     <section class="tabla">
       <h2>Mis productos</h2>
 
       <table>
-        <tr>
-          <th>Producto</th>
-          <th>Precio</th>
-          <th>Estado</th>
-          <th>Acciones</th>
-        </tr>
-        <tr>
-          <td>Canasta de frutas</td>
-          <td>$120</td>
-          <td>Activo</td>
-          <td>Editar | Eliminar</td>
-        </tr>
-        <tr>
-          <td>Maceta artesanal</td>
-          <td>$150</td>
-          <td>Pendiente</td>
-          <td>Editar | Eliminar</td>
-        </tr>
-      </table>
+  <tr>
+    <th>Producto</th>
+    <th>Precio</th>
+    <th>Estado</th>
+    <th>Acciones</th>
+  </tr>
+
+  <tr *ngFor="let producto of productos; let i = index">
+    <td>{{ producto.nombre }}</td>
+    <td>${{ producto.precio }}</td>
+    <td>{{ producto.estado }}</td>
+
+    <td>
+      <button class="btn-tabla">
+        Editar
+      </button>
+
+      <button
+        class="btn-tabla eliminar"
+        (click)="eliminarProducto(i)"
+      >
+        Eliminar
+      </button>
+    </td>
+  </tr>
+</table>
     </section>
   </main>
 </section>

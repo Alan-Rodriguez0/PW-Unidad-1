@@ -71,3 +71,14 @@
   font-weight: bold;
   text-decoration: none;
 }
+
+@media (max-width: 600px) {
+  .login-card {
+    width: 100%;
+    padding: 25px;
+  }
+
+  .login-page {
+    padding: 18px;
+  }
+}

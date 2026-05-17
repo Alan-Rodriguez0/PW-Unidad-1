@@ -153,3 +153,186 @@
   font-weight: bold;
   cursor: pointer;
 }
+
+@media (max-width: 900px) {
+  .catalogo-page {
+    padding: 18px;
+  }
+
+  .topbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .acciones {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .banner {
+    padding: 35px 25px;
+    text-align: center;
+  }
+
+  .banner h1 {
+    font-size: 34px;
+  }
+
+  .filtros {
+    justify-content: center;
+  }
+
+  .productos-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.user-menu {
+  position: relative;
+}
+
+.user-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: none;
+  background: #166534;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  padding: 0;
+}
+
+.dropdown-profile {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 55px;
+  width: 280px;
+  background: white;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  padding: 18px;
+  z-index: 1000;
+}
+
+.user-menu:hover .dropdown-profile {
+  display: block;
+}
+
+.profile-top {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.profile-avatar {
+  width: 55px;
+  height: 55px;
+  background: #eef7e9;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 28px;
+}
+
+.profile-top h4 {
+  margin: 0;
+  color: #14532d;
+}
+
+.profile-top p {
+  margin: 0;
+  font-size: 13px;
+  color: #666;
+}
+
+.rol {
+  display: inline-block;
+  background: #eef7e9;
+  color: #166534;
+  padding: 6px 12px;
+  border-radius: 18px;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.profile-links {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-links a {
+  padding: 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #222;
+  font-weight: 600;
+}
+
+.profile-links a:hover {
+  background: #eef7e9;
+  color: #166534;
+}
+
+.cart-icon {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  background: #166534;
+  color: white;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: #fbc02d;
+  color: #1f1f1f;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.favorite-icon {
+  width: 44px;
+  height: 44px;
+  background: #166534;
+  color: white;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.acciones .user-menu .user-icon {
+  width: 45px !important;
+  height: 45px !important;
+  min-width: 45px !important;
+  min-height: 45px !important;
+  border-radius: 999px !important;
+  padding: 0 !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  background: #166534 !important;
+  color: white !important;
+  border: none !important;
+  overflow: hidden !important;
+}

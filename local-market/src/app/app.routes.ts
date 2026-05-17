@@ -8,6 +8,10 @@ import { Carrito } from './pages/carrito/carrito';
 import { RegistroVendedor } from './pages/registro-vendedor/registro-vendedor';
 import { PanelVendedor } from './pages/panel-vendedor/panel-vendedor';
 import { PanelAdmin } from './pages/panel-admin/panel-admin';
+import { Checkout } from './pages/checkout/checkout';
+import { Favoritos } from './pages/favoritos/favoritos';
+import { MisPedidos } from './pages/mis-pedidos/mis-pedidos';
+import { Perfil } from './pages/perfil/perfil';
 
 export const routes: Routes = [
   { path: '', component: Inicio },
@@ -19,4 +23,8 @@ export const routes: Routes = [
   { path: 'registro-vendedor', component: RegistroVendedor },
   { path: 'panel-vendedor', component: PanelVendedor },
   { path: 'panel-admin', component: PanelAdmin },
+  { path: 'checkout', component: Checkout },
+  { path: 'favoritos', component: Favoritos },
+  { path: 'mis-pedidos', component: MisPedidos },
+  { path: 'perfil', component: Perfil },
 ];
