@@ -16,12 +16,22 @@
     />
 
     <div class="acciones">
-  <button>Categorías</button>
+      <a
+  routerLink="/registro-vendedor"
+  *ngIf="rolUsuario !== 'vendedor' && rolUsuario !== 'admin'"
+  class="vender-btn"
+>
+  Vender
+</a>
   <div
   class="favorite-icon"
   routerLink="/favoritos">
 
   <svg lucideHeart size="22"></svg>
+
+  <span class="favorite-badge">
+    {{ favoritosService.cantidad() }}
+  </span>
 
 </div>
   <div
@@ -31,8 +41,8 @@
   <svg lucideShoppingCart size="22"></svg>
 
   <span class="cart-badge">
-    {{ cantidadCarrito }}
-  </span>
+  {{ carritoService.cantidad() }}
+</span>
 
 </div>
 
@@ -46,18 +56,23 @@
         <div class="profile-avatar">👤</div>
 
         <div>
-          <h4>Eduardo López</h4>
-          <p>usuario&#64;correo.com</p>
+          <h4>{{ nombreUsuario }}</h4>
+<p>{{ correoUsuario }}</p>
         </div>
       </div>
 
-      <span class="rol">Cliente</span>
+      <span class="rol">{{ rolUsuario }}</span>
 
       <div class="profile-links">
         <a routerLink="/perfil">Editar perfil</a>
         <a routerLink="/mis-pedidos">Mis pedidos</a>
-        <a routerLink="/favoritos">Favoritos</a>
         <a routerLink="/">Cerrar sesión</a>
+        <a
+  routerLink="/panel-vendedor"
+  *ngIf="rolUsuario === 'vendedor'"
+>
+  Panel vendedor
+</a>
       </div>
     </div>
   </div>
@@ -85,7 +100,8 @@
     <app-product-card
   *ngFor="let producto of productosFiltrados"
   [producto]="producto"
-  (agregar)="agregarCarrito()">
+  (agregar)="agregarCarrito()"
+  (favoritoAgregado)="agregarFavorito()">
 </app-product-card>
   </section>
 </section>

@@ -309,6 +309,7 @@
 }
 
 .favorite-icon {
+  position: relative;
   width: 44px;
   height: 44px;
   background: #166534;
@@ -335,4 +336,37 @@
   color: white !important;
   border: none !important;
   overflow: hidden !important;
+}
+
+.favorite-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: #fbc02d;
+  color: #1f1f1f;
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.vender-btn {
+  height: 44px;
+  background: #166534;
+  color: white;
+  padding: 0 18px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.vender-btn:hover {
+  background: #15803d;
 }

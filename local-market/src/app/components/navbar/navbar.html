@@ -5,17 +5,23 @@
 
   <nav>
     <a routerLink="/">Inicio</a>
-    <a routerLink="/registro-vendedor">Vender</a>
+    <a routerLink="/login">Vender</a>
   </nav>
 
   <div class="acciones">
-  <button routerLink="/favoritos" class="icon-action">
-    <svg lucideHeart size="21"></svg>
-  </button>
+  <button routerLink="/favoritos" class="icon-action favorite-public">
+
+  <svg lucideHeart size="21"></svg>
+
+  <span>
+    {{ favoritosService.cantidad() }}
+  </span>
+
+</button>
 
   <button routerLink="/carrito" class="icon-action cart-public">
     <svg lucideShoppingCart size="21"></svg>
-    <span>{{ cantidadCarrito }}</span>
+    <span>{{ carritoService.cantidad() }}</span>
   </button>
 
   <button routerLink="/login" class="login">

@@ -10,6 +10,7 @@ import { RouterLink } from '@angular/router';
 export class ProductCard {
   @Input() producto: any;
   @Output() agregar = new EventEmitter<void>();
+  @Output() favoritoAgregado = new EventEmitter<void>();
 
   favorito = false;
 
@@ -18,6 +19,10 @@ export class ProductCard {
   }
 
   toggleFavorito() {
-    this.favorito = !this.favorito;
+  this.favorito = !this.favorito;
+
+  if (this.favorito) {
+    this.favoritoAgregado.emit();
   }
+}
 }

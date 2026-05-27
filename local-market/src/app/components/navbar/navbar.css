@@ -98,3 +98,18 @@ nav a:hover {
   font-size: 12px;
   font-weight: bold;
 }
+
+.favorite-public span {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: #fbc02d;
+  color: #1f1f1f;
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: bold;
+}

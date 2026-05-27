@@ -39,6 +39,8 @@
   <h2>Solicitudes de vendedores</h2>
 
   <table>
+
+  <thead>
     <tr>
       <th>Negocio</th>
       <th>Responsable</th>
@@ -46,25 +48,36 @@
       <th>Estado</th>
       <th>Acciones</th>
     </tr>
+  </thead>
 
+  <tbody>
     <tr *ngFor="let solicitud of solicitudes">
-      <td>{{ solicitud.negocio }}</td>
+      <td>{{ solicitud.nombre_negocio }}</td>
       <td>{{ solicitud.responsable }}</td>
       <td>{{ solicitud.ubicacion }}</td>
+
       <td>
         <span
-          [class.estado-aprobado]="solicitud.estado === 'Aprobado'"
-          [class.estado-rechazado]="solicitud.estado === 'Rechazado'"
+          [class.estado-aprobado]="solicitud.estado === 'aprobado'"
+          [class.estado-rechazado]="solicitud.estado === 'rechazado'"
         >
           {{ solicitud.estado }}
         </span>
       </td>
+
       <td>
-        <button class="aprobar" (click)="aprobar(solicitud)">Aprobar</button>
-        <button class="rechazar" (click)="rechazar(solicitud)">Rechazar</button>
+        <button class="aprobar" (click)="aprobar(solicitud)">
+          Aprobar
+        </button>
+
+        <button class="rechazar" (click)="rechazar(solicitud)">
+          Rechazar
+        </button>
       </td>
     </tr>
-  </table>
+  </tbody>
+
+</table>
 </section>
 
     <section class="productos">

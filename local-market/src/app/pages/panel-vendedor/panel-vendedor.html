@@ -33,9 +33,24 @@
 
 <textarea placeholder="Descripción del producto" [(ngModel)]="nuevoProducto.descripcion"></textarea>
 
-<input type="file" />
+<input
+  type="text"
+  placeholder="URL de imagen del producto"
+  [(ngModel)]="nuevoProducto.imagen"
+/>
 
-<button (click)="agregarProducto()">Publicar producto</button>
+<button
+  (click)="editando ? guardarCambios() : agregarProducto()"
+  [disabled]="publicando"
+>
+
+  {{
+    editando
+      ? 'Guardar cambios'
+      : 'Publicar producto'
+  }}
+
+</button>
     </section>
 
     <section class="tabla">
@@ -55,13 +70,13 @@
     <td>{{ producto.estado }}</td>
 
     <td>
-      <button class="btn-tabla">
-        Editar
-      </button>
+      <button class="btn-tabla" (click)="editarProducto(producto)">
+  Editar
+</button>
 
       <button
         class="btn-tabla eliminar"
-        (click)="eliminarProducto(i)"
+        (click)="eliminarProducto(producto)"
       >
         Eliminar
       </button>

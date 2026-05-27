@@ -5,6 +5,8 @@ import { Navbar } from '../../components/navbar/navbar';
 import { Footer } from '../../components/footer/footer';
 import { ProductCard } from '../../components/product-card/product-card';
 import { Toast } from '../../components/toast/toast';
+import { CarritoService } from '../../services/carrito';
+import { FavoritosService } from '../../services/favoritos';
 
 @Component({
   selector: 'app-inicio',
@@ -49,10 +51,38 @@ productosDestacados = [
   },
 ];
 
+categoriaSeleccionada = 'Todos';
+
+get productosFiltradosInicio() {
+  return this.productosDestacados.filter((producto) => {
+    return (
+      this.categoriaSeleccionada === 'Todos' ||
+      producto.categoria === this.categoriaSeleccionada
+    );
+  });
+}
+
+filtrarCategoria(categoria: string) {
+  this.categoriaSeleccionada = categoria;
+}
+
+
+
 agregarCarrito() {
-  this.cantidadCarrito++;
+  this.carritoService.agregarProducto();
 
   this.mensajeToast = 'Producto agregado al carrito';
+  this.mostrarToast = true;
+
+  setTimeout(() => {
+    this.mostrarToast = false;
+  }, 2500);
+}
+
+agregarFavorito() {
+  this.favoritosService.agregarFavorito();
+
+  this.mensajeToast = 'Producto agregado a favoritos';
   this.mostrarToast = true;
 
   setTimeout(() => {
@@ -93,11 +123,14 @@ agregarCarrito() {
     },
   ];
 
-  constructor() {
-    setInterval(() => {
-      this.siguienteSlide();
-    }, 5000);
-  }
+  constructor(
+  private carritoService: CarritoService,
+  private favoritosService: FavoritosService
+) {
+  setInterval(() => {
+    this.siguienteSlide();
+  }, 5000);
+}
 
   siguienteSlide() {
     this.slideActual = (this.slideActual + 1) % this.slides.length;

@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ProductCard } from '../../components/product-card/product-card';
 import { Toast } from '../../components/toast/toast';
 import { LucideUser, LucideShoppingCart, LucideHeart } from '@lucide/angular';
+import { CarritoService } from '../../services/carrito';
+import { FavoritosService } from '../../services/favoritos';
+import { supabase } from '../../supabase/supabase';
 
 @Component({
   selector: 'app-catalogo',
@@ -13,56 +16,60 @@ import { LucideUser, LucideShoppingCart, LucideHeart } from '@lucide/angular';
   styleUrl: './catalogo.css',
 })
 export class Catalogo {
+
+  rolUsuario = '';
+  nombreUsuario = '';
+  correoUsuario = '';
   busqueda = '';
   categoriaSeleccionada = 'Todos';
-  cantidadCarrito = 0;
   mostrarToast = false;
   mensajeToast = '';
 
-  productos = [
-    {
-      nombre: 'Canasta de frutas',
-      vendedor: 'Frutería López',
-      precio: 120,
-      categoria: 'Alimentos',
-      imagen: 'https://images.unsplash.com/photo-1610348725531-843dff563e2c?w=500',
-    },
-    {
-      nombre: 'Audífonos Bluetooth',
-      vendedor: 'TecnoShop',
-      precio: 450,
-      categoria: 'Tecnología',
-      imagen: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500',
-    },
-    {
-      nombre: 'Camisa de lino',
-      vendedor: 'Moda Local',
-      precio: 280,
-      categoria: 'Ropa',
-      imagen: 'https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=500',
-    },
-    {
-      nombre: 'Maceta artesanal',
-      vendedor: 'Artesanías del Pueblo',
-      precio: 150,
-      categoria: 'Hogar',
-      imagen: 'https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=500',
-    },
-    {
-      nombre: 'Laptop HP',
-      vendedor: 'CompuMarket',
-      precio: 8500,
-      categoria: 'Tecnología',
-      imagen: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500',
-    },
-    {
-      nombre: 'Zapatos deportivos',
-      vendedor: 'Sport Center',
-      precio: 650,
-      categoria: 'Deportes',
-      imagen: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500',
-    },
-  ];
+  constructor(
+  public carritoService: CarritoService,
+  public favoritosService: FavoritosService,
+  private cdr: ChangeDetectorRef
+) {
+  this.obtenerRolUsuario();
+  this.obtenerProductos();
+}
+
+
+  async obtenerRolUsuario() {
+  const { data: sessionData } = await supabase.auth.getSession();
+
+  const user = sessionData.session?.user;
+
+  if (!user) {
+    this.rolUsuario = 'usuario';
+    return;
+  }
+
+  const { data: perfil, error } = await supabase
+    .from('usuarios')
+    .select('nombre, rol')
+    .eq('auth_id', user.id)
+    .maybeSingle();
+
+  console.log('Usuario auth:', user.id);
+  console.log('Perfil encontrado:', perfil);
+  console.log('Error perfil:', error);
+
+  if (error || !perfil) {
+    this.rolUsuario = 'usuario';
+    return;
+  }
+
+this.rolUsuario = (perfil.rol || 'usuario').trim().toLowerCase();
+this.nombreUsuario = perfil.nombre || 'Usuario';
+this.correoUsuario = user.email ?? '';
+
+this.cdr.detectChanges();
+
+  console.log('Rol final:', this.rolUsuario);
+}
+
+  productos: any[] = [];
 
   get productosFiltrados() {
     return this.productos.filter((producto) => {
@@ -83,7 +90,7 @@ export class Catalogo {
   }
 
   agregarCarrito() {
-  this.cantidadCarrito++;
+  this.carritoService.agregarProducto();
 
   this.mensajeToast = 'Producto agregado al carrito';
   this.mostrarToast = true;
@@ -91,5 +98,31 @@ export class Catalogo {
   setTimeout(() => {
     this.mostrarToast = false;
   }, 2500);
+}
+
+agregarFavorito() {
+  this.favoritosService.agregarFavorito();
+
+  this.mensajeToast = 'Producto agregado a favoritos';
+  this.mostrarToast = true;
+
+  setTimeout(() => {
+    this.mostrarToast = false;
+  }, 2500);
+}
+
+async obtenerProductos() {
+  const { data, error } = await supabase
+    .from('productos')
+    .select('*')
+    .eq('estado', 'Activo');
+
+  if (error) {
+    console.log(error);
+    return;
+  }
+
+  this.productos = data;
+  this.cdr.detectChanges();
 }
 }

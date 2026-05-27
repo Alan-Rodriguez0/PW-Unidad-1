@@ -22,7 +22,13 @@
         <option>Tarjeta de crédito o débito</option>
       </select>
 
-      <button>Confirmar compra</button>
+      <button (click)="confirmarCompra()">
+  Confirmar compra
+</button>
+
+<p class="mensaje-exito" *ngIf="compraRealizada">
+  Compra realizada correctamente. Gracias por comprar en Local Market.
+</p>
     </div>
 
     <div class="resumen">

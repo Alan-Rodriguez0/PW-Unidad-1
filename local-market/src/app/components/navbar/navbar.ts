@@ -1,6 +1,8 @@
-import { Component, Input  } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LucideHeart, LucideShoppingCart } from '@lucide/angular';
+import { CarritoService } from '../../services/carrito';
+import { FavoritosService } from '../../services/favoritos';
 
 @Component({
   selector: 'app-navbar',
@@ -9,5 +11,8 @@ import { LucideHeart, LucideShoppingCart } from '@lucide/angular';
   styleUrl: './navbar.css',
 })
 export class Navbar {
-  @Input() cantidadCarrito = 0;
+  constructor(
+  public carritoService: CarritoService,
+  public favoritosService: FavoritosService
+) {}
 }
